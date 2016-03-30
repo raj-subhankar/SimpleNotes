@@ -13,13 +13,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         // Databse: notes_db, Version: 1
         super(context, "notes_db", null, 1);
     }
-
-    /**
-     * Create simple table
-     * notes
-     *         _id     - key
-     *         note    - note text
-     */
+    
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Execute create table SQL
