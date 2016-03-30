@@ -2,6 +2,7 @@ package com.android.raj_subhankar.simplenotes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     private EditText noteText;        // Text field
     private Button addNewButton;    // Add new button
     private Button backButton;        // Back button
+    CoordinatorLayout clContent;
 
     // DAO
     private NoteDAO dao;
@@ -52,7 +54,8 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             dao.createNote(noteTextValue);
 
             // Display success information
-            Toast.makeText(getApplicationContext(), "New Note added!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), "New Note added!", Toast.LENGTH_LONG).show();
+            Snackbar.make(v, "New Note added", Snackbar.LENGTH_SHORT).show();
 
             // Create an intent
             Intent intent = new Intent(AddNoteActivity.this,MainActivity.class);
