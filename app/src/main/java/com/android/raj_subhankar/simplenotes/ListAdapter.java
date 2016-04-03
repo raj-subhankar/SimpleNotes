@@ -1,6 +1,7 @@
 package com.android.raj_subhankar.simplenotes;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,14 @@ public class ListAdapter extends ArrayAdapter {
     private final Context context;
     // List values
     private final List<Note> noteList;
+    //Custom font
+    private Typeface tf;
 
     public ListAdapter(Context context, List noteList) {
         super(context, R.layout.activity_main, noteList);
         this.context = context;
         this.noteList = noteList;
+        this.tf = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSans-Regular.ttf");
     }
 
     @Override
@@ -33,6 +37,7 @@ public class ListAdapter extends ArrayAdapter {
 
         TextView noteText = (TextView) rowView.findViewById(R.id.noteText);
         noteText.setText(noteList.get(position).getText());
+        noteText.setTypeface(tf);
         return rowView;
     }
 }
