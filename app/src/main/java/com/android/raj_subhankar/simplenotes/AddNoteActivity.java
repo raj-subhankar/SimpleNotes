@@ -12,12 +12,9 @@ import android.widget.EditText;
 public class AddNoteActivity extends AppCompatActivity implements View.OnClickListener {
 
     // GUI components
-    private EditText noteText;        // Text field
+    private EditText newTodoText;        // Text field
     private Button addNewButton;    // Add new button
     private Button backButton;        // Back button
-
-    // DAO
-    private NoteDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,52 +23,38 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Create DAO object
-        dao = new NoteDAO(this);
-
-        noteText         = (EditText)findViewById(R.id.newTodoText);
+        newTodoText         = (EditText)findViewById(R.id.newTodoText);
         addNewButton     = (Button)findViewById(R.id.addNewTodoButton);
         backButton        = (Button)findViewById(R.id.menuGoBackButton);
 
         addNewButton.setOnClickListener(this);
         backButton.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View v) {
         // If add button was clicked
         if (addNewButton.isPressed()) {
-            // Get entered text
-            String noteTextValue = noteText.getText().toString();
-            noteText.setText("");
+            Note newNote = new Note();
+            newNote.text = newTodoText.getText().toString();
 
-            // Add text to the database
-            dao.createNote(noteTextValue);
+            // Get singleton instance of database
+            SQLiteHelper databaseHelper = SQLiteHelper.getInstance(this);
+
+            // Add sample post to the database
+            databaseHelper.addNote(newNote);
 
             // Display success information
             Snackbar.make(v, "New Note added", Snackbar.LENGTH_SHORT).show();
 
-            // Create an intent
             Intent intent = new Intent(AddNoteActivity.this,MainActivity.class);
-            // Start activity
             startActivity(intent);
-            // Finish this activity
             AddNoteActivity.this.finish();
 
-            // Close the database
-            dao.close();
-
         } else if (backButton.isPressed()) {
-            // Create an intent
             Intent intent = new Intent(this, MainActivity.class);
-            // Start activity
             startActivity(intent);
-            // Finish this activity
             this.finish();
-
-            // Close the database
-            dao.close();
         }
 
     }

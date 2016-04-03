@@ -5,9 +5,9 @@ package com.android.raj_subhankar.simplenotes;
  */
 public class Note {
 
-    private int id;
+    public int id;
 
-    private String text;
+    public String text;
 
     public int getId() {
         return id;

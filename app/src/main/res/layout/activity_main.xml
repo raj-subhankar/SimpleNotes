@@ -21,13 +21,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ListView
-        android:id="@android:id/list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNote"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:orientation="vertical">
-    </ListView>
+        android:orientation="vertical"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
