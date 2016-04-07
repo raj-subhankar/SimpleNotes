@@ -2,12 +2,16 @@ package com.android.raj_subhankar.simplenotes;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,14 +20,28 @@ import java.util.List;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         implements ItemTouchHelperAdapter{
 
+    public interface OnDragStartListener {
+        void onDragStarted(RecyclerView.ViewHolder viewHolder);
+    }
+
+    private final OnStartDragListener mDragStartListener;
+
+//    public NoteAdapter(Context context, OnStartDragListener  dragStartListener) {
+//        mDragStartListener = dragStartListener;
+//        //mNote.addAll();
+//    }
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder implements
             ItemTouchHelperViewHolder{
         public TextView noteTextView;
+        public final ImageView handleView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             noteTextView = (TextView) itemView.findViewById(R.id.tvNote);
+            handleView = (ImageView) itemView.findViewById(R.id.handle);
         }
 
         @Override
@@ -39,8 +57,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
     private List<Note> mNote;
 
-    public NoteAdapter(List<Note> note) {
+    public NoteAdapter(List<Note> note, OnStartDragListener  dragStartListener) {
         mNote = note;
+        mDragStartListener = dragStartListener;
     }
 
     @Override
@@ -55,13 +74,24 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(NoteAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(final NoteAdapter.ViewHolder viewHolder, int position) {
+
         // Get the data model based on position
         Note note = mNote.get(position);
 
         // Set item views based on the data model
         TextView textView2 = viewHolder.noteTextView;
         textView2.setText(note.text);
+
+        viewHolder.handleView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mDragStartListener.onStartDrag(viewHolder);
+                }
+                return false;
+            }
+        });
 
     }
 
@@ -82,4 +112,5 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
     public int getItemCount() {
         return mNote.size();
     }
+
 }
