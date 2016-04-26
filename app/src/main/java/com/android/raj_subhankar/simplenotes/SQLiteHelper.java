@@ -50,7 +50,7 @@ public class SQLiteHelper  extends SQLiteOpenHelper{
 
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NOTES +
                 "(" +
-                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                KEY_ID + " INTEGER PRIMARY KEY," +
                 KEY_NOTE + " TEXT" +
                 ")";
 
@@ -98,6 +98,16 @@ public class SQLiteHelper  extends SQLiteOpenHelper{
         }
     }
 
+    public void deleteNote(long noteId){
+        SQLiteDatabase db = getWritableDatabase();
+        //db.delete("notes", "_id = " + noteId, null);
+        Log.d(TAG, "deleteNote "+ noteId);
+        Log.d(TAG, "deleteNote "+String.valueOf(noteId));
+        db.delete(TABLE_NOTES, KEY_ID + "=?",
+                new String[] { String.valueOf(noteId) });
+
+    }
+
     public List<Note> getAllNotes() {
         List<Note> notes = new ArrayList<>();
         String NOTES_SELECT_QUERY =
@@ -113,7 +123,7 @@ public class SQLiteHelper  extends SQLiteOpenHelper{
                 do {
                     Note newNote = new Note();
                     newNote.text = cursor.getString(cursor.getColumnIndex(KEY_NOTE));
-
+                    newNote.id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
                     notes.add(newNote);
                 } while(cursor.moveToNext());
             }

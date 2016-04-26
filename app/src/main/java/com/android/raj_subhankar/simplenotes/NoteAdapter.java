@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -20,11 +21,15 @@ import java.util.List;
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         implements ItemTouchHelperAdapter{
 
+    Context context;
+
     public interface OnDragStartListener {
         void onDragStarted(RecyclerView.ViewHolder viewHolder);
     }
 
     private final OnStartDragListener mDragStartListener;
+
+
 
 //    public NoteAdapter(Context context, OnStartDragListener  dragStartListener) {
 //        mDragStartListener = dragStartListener;
@@ -64,7 +69,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
     @Override
     public NoteAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View noteView = inflater.inflate(R.layout.list_item_note, parent, false);
@@ -78,7 +83,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
         // Get the data model based on position
         Note note = mNote.get(position);
-
+        Log.d("TAG", "onBindViewholder "+ note.id);
         // Set item views based on the data model
         TextView textView2 = viewHolder.noteTextView;
         textView2.setText(note.text);
@@ -97,8 +102,17 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
     @Override
     public void onItemDismiss(int position) {
+
+        // Get the data model based on position
+        Note note = mNote.get(position);
+
         mNote.remove(position);
+        Log.d("TAG", "onItemDismiss "+ note.text);
         notifyItemRemoved(position);
+
+        SQLiteHelper databaseHelper = SQLiteHelper.getInstance(context);
+
+        databaseHelper.deleteNote(note.getId());
     }
 
     @Override
