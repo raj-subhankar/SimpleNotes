@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         SQLiteHelper databaseHelper = SQLiteHelper.getInstance(this);
 
         // Get all posts from database
