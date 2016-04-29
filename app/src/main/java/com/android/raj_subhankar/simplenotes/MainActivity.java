@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView rvNotes = (RecyclerView) findViewById(R.id.rvNote);
 
         // Create adapter passing in the sample user data
-        NoteAdapter adapter = new NoteAdapter(notes);
+        NoteAdapter adapter = new NoteAdapter(notes, getApplicationContext());
         rvNotes.setAdapter(adapter);
         // Set layout manager to position the items
         rvNotes.setLayoutManager(new LinearLayoutManager(this));

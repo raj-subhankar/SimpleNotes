@@ -1,6 +1,7 @@
 package com.android.raj_subhankar.simplenotes;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.Color;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
@@ -23,9 +24,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
     Context context;
 
-    public interface OnDragStartListener {
-        void onDragStarted(RecyclerView.ViewHolder viewHolder);
-    }
+    private Typeface tf;
+
+    private List<Note> mNote;
 
 //    public NoteAdapter(Context context, OnStartDragListener  dragStartListener) {
 //        mDragStartListener = dragStartListener;
@@ -54,10 +55,10 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         }
     }
 
-    private List<Note> mNote;
-
-    public NoteAdapter(List<Note> note) {
+    public NoteAdapter(List<Note> note, Context context) {
+        context = context;
         mNote = note;
+        tf = Typeface.createFromAsset(context.getAssets(), "fonts/Consolas.ttf");
     }
 
     @Override
@@ -80,6 +81,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         // Set item views based on the data model
         TextView textView2 = viewHolder.noteTextView;
         textView2.setText(note.text);
+        textView2.setTypeface(tf);
     }
 
     @Override
