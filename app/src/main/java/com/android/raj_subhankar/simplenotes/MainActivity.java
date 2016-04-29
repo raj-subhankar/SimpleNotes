@@ -13,7 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnStartDragListener {
+public class MainActivity extends AppCompatActivity {
 
     private ItemTouchHelper mItemTouchHelper;
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements OnStartDragListen
         RecyclerView rvNotes = (RecyclerView) findViewById(R.id.rvNote);
 
         // Create adapter passing in the sample user data
-        NoteAdapter adapter = new NoteAdapter(notes, this);
+        NoteAdapter adapter = new NoteAdapter(notes);
         rvNotes.setAdapter(adapter);
         // Set layout manager to position the items
         rvNotes.setLayoutManager(new LinearLayoutManager(this));
@@ -72,10 +72,5 @@ public class MainActivity extends AppCompatActivity implements OnStartDragListen
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
-        mItemTouchHelper.startDrag(viewHolder);
     }
 }

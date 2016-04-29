@@ -27,10 +27,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         void onDragStarted(RecyclerView.ViewHolder viewHolder);
     }
 
-    private final OnStartDragListener mDragStartListener;
-
-
-
 //    public NoteAdapter(Context context, OnStartDragListener  dragStartListener) {
 //        mDragStartListener = dragStartListener;
 //        //mNote.addAll();
@@ -40,13 +36,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
     public static class ViewHolder extends RecyclerView.ViewHolder implements
             ItemTouchHelperViewHolder{
         public TextView noteTextView;
-        public final ImageView handleView;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             noteTextView = (TextView) itemView.findViewById(R.id.tvNote);
-            handleView = (ImageView) itemView.findViewById(R.id.handle);
         }
 
         @Override
@@ -62,9 +56,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
     private List<Note> mNote;
 
-    public NoteAdapter(List<Note> note, OnStartDragListener  dragStartListener) {
+    public NoteAdapter(List<Note> note) {
         mNote = note;
-        mDragStartListener = dragStartListener;
     }
 
     @Override
@@ -87,17 +80,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         // Set item views based on the data model
         TextView textView2 = viewHolder.noteTextView;
         textView2.setText(note.text);
-
-        viewHolder.handleView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
-                    mDragStartListener.onStartDrag(viewHolder);
-                }
-                return false;
-            }
-        });
-
     }
 
     @Override
