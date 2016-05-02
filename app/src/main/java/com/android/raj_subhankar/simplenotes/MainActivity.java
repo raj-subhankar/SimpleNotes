@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         // Complete the changes added above
         ft.commit();
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
 

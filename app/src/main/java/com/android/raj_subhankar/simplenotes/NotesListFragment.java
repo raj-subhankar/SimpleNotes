@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -27,6 +28,8 @@ public class NotesListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notes_list, parent, false);
 
         SQLiteHelper databaseHelper = SQLiteHelper.getInstance(getActivity());
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         // Get all posts from database
         List<Note> notes = databaseHelper.getAllNotes();
@@ -53,6 +56,7 @@ public class NotesListFragment extends Fragment {
                 ft.replace(R.id.placeholder, new NewNoteFragment());
                 // or ft.add(R.id.your_placeholder, new FooFragment());
                 // Complete the changes added above
+                ft.addToBackStack(null);
                 ft.commit();
             }
         });

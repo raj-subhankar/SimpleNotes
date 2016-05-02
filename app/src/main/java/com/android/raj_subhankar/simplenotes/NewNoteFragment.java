@@ -6,7 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,6 +30,8 @@ public class NewNoteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_new_note, parent, false);
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         newTodoText         = (EditText) view.findViewById(R.id.newTodoText);
 
@@ -58,5 +63,24 @@ public class NewNoteFragment extends Fragment {
 
         // Defines the xml file for the fragment
         return view;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+//                onBackPressed();
+                // Begin the transaction
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                // Replace the contents of the container with the new fragment
+                ft.replace(R.id.placeholder, new NotesListFragment());
+                // or ft.add(R.id.your_placeholder, new FooFragment());
+                // Complete the changes added above
+                ft.commit();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
