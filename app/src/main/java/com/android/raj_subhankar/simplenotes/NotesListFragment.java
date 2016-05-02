@@ -46,20 +46,7 @@ public class NotesListFragment extends Fragment {
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(rvNotes);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Begin the transaction
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                // Replace the contents of the container with the new fragment
-                ft.replace(R.id.placeholder, new NewNoteFragment());
-                // or ft.add(R.id.your_placeholder, new FooFragment());
-                // Complete the changes added above
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
+
 
         // Defines the xml file for the fragment
         return view;
@@ -72,4 +59,6 @@ public class NotesListFragment extends Fragment {
         // Setup any handles to view objects here
         // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
     }
+
+
 }

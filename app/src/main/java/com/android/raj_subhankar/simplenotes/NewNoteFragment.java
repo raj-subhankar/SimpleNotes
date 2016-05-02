@@ -35,7 +35,7 @@ public class NewNoteFragment extends Fragment {
 
         newTodoText         = (EditText) view.findViewById(R.id.newTodoText);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        Button fab = (Button) view.findViewById(R.id.button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
