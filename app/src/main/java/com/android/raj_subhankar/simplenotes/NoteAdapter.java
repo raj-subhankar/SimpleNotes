@@ -16,7 +16,7 @@ import java.util.List;
  * Created by subhankar on 4/3/2016.
  */
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
-        implements ItemTouchHelperAdapter{
+        implements ItemTouchHelperAdapter {
 
     Context context;
 
@@ -25,7 +25,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
     private List<Note> mNote;
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements
-            ItemTouchHelperViewHolder{
+            ItemTouchHelperViewHolder {
         public TextView noteTextView;
 
         public ViewHolder(View itemView) {
@@ -67,7 +67,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
         // Get the data model based on position
         Note note = mNote.get(position);
-        Log.d("TAG", "onBindViewholder "+ note.id);
+        Log.d("TAG", "onBindViewholder " + note.id);
         // Set item views based on the data model
         TextView textView2 = viewHolder.noteTextView;
         textView2.setText(note.text);
@@ -81,7 +81,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         Note note = mNote.get(position);
 
         mNote.remove(position);
-        Log.d("TAG", "onItemDismiss "+ note.text);
+        Log.d("TAG", "onItemDismiss " + note.text);
         notifyItemRemoved(position);
 
         SQLiteHelper databaseHelper = SQLiteHelper.getInstance(context);

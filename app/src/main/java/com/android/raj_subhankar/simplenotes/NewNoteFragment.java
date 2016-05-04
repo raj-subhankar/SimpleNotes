@@ -26,9 +26,9 @@ public class NewNoteFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_new_note, parent, false);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        newTodoText         = (EditText) view.findViewById(R.id.newTodoText);
+        newTodoText = (EditText) view.findViewById(R.id.newTodoText);
 
         Button fab = (Button) view.findViewById(R.id.button);
         fab.setOnClickListener(new View.OnClickListener() {

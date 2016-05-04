@@ -27,7 +27,7 @@ public class NotesListFragment extends Fragment {
 
         SQLiteHelper databaseHelper = SQLiteHelper.getInstance(getActivity());
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         // Get all posts from database
         List<Note> notes = databaseHelper.getAllNotes();
@@ -43,7 +43,6 @@ public class NotesListFragment extends Fragment {
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(rvNotes);
-
 
 
         // Defines the xml file for the fragment

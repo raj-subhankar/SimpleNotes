@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by subhankar on 3/30/2016.
  */
-public class SQLiteHelper  extends SQLiteOpenHelper{
+public class SQLiteHelper extends SQLiteOpenHelper {
 
     public static final String TAG = "databaseerror";
 
@@ -98,13 +98,13 @@ public class SQLiteHelper  extends SQLiteOpenHelper{
         }
     }
 
-    public void deleteNote(long noteId){
+    public void deleteNote(long noteId) {
         SQLiteDatabase db = getWritableDatabase();
         //db.delete("notes", "_id = " + noteId, null);
-        Log.d(TAG, "deleteNote "+ noteId);
-        Log.d(TAG, "deleteNote "+String.valueOf(noteId));
+        Log.d(TAG, "deleteNote " + noteId);
+        Log.d(TAG, "deleteNote " + String.valueOf(noteId));
         db.delete(TABLE_NOTES, KEY_ID + "=?",
-                new String[] { String.valueOf(noteId) });
+                new String[]{String.valueOf(noteId)});
 
     }
 
@@ -125,7 +125,7 @@ public class SQLiteHelper  extends SQLiteOpenHelper{
                     newNote.text = cursor.getString(cursor.getColumnIndex(KEY_NOTE));
                     newNote.id = cursor.getInt(cursor.getColumnIndex(KEY_ID));
                     notes.add(newNote);
-                } while(cursor.moveToNext());
+                } while (cursor.moveToNext());
             }
         } catch (Exception e) {
             Log.d(TAG, "Error while trying to get posts from database");
