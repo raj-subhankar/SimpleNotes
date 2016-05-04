@@ -3,17 +3,13 @@ package com.android.raj_subhankar.simplenotes;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.Color;
-import android.support.v4.view.MotionEventCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -27,12 +23,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
     private Typeface tf;
 
     private List<Note> mNote;
-
-//    public NoteAdapter(Context context, OnStartDragListener  dragStartListener) {
-//        mDragStartListener = dragStartListener;
-//        //mNote.addAll();
-//    }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements
             ItemTouchHelperViewHolder{

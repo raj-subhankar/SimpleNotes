@@ -1,12 +1,9 @@
 package com.android.raj_subhankar.simplenotes;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -15,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.List;
 
 /**
  * Created by subhankar on 5/1/2016.
@@ -24,7 +20,6 @@ public class NewNoteFragment extends Fragment {
 
     // GUI components
     private EditText newTodoText;        // Text field
-    private Button addNewButton;    // Add new button
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -53,10 +48,7 @@ public class NewNoteFragment extends Fragment {
 
                 // Begin the transaction
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                // Replace the contents of the container with the new fragment
                 ft.replace(R.id.placeholder, new NotesListFragment());
-                // or ft.add(R.id.your_placeholder, new FooFragment());
-                // Complete the changes added above
                 ft.commit();
             }
         });
@@ -72,10 +64,7 @@ public class NewNoteFragment extends Fragment {
 //                onBackPressed();
                 // Begin the transaction
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                // Replace the contents of the container with the new fragment
                 ft.replace(R.id.placeholder, new NotesListFragment());
-                // or ft.add(R.id.your_placeholder, new FooFragment());
-                // Complete the changes added above
                 ft.commit();
                 return true;
 
