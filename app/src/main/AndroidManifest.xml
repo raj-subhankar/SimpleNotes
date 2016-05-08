@@ -19,6 +19,14 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:name=".NewNoteActivity"
+            android:label="@string/title_activity_add_note"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.raj_subhankar.simplenotes.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

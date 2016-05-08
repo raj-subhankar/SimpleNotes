@@ -1,5 +1,6 @@
 package com.android.raj_subhankar.simplenotes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
@@ -34,11 +35,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Begin the transaction
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.placeholder, new NewNoteFragment());
-                ft.addToBackStack(null);
-                ft.commit();
+                Intent intent = new Intent(MainActivity.this, NewNoteActivity.class);
+                startActivity(intent);
             }
         });
 
